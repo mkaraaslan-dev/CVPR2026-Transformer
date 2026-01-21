@@ -119,11 +119,11 @@ class BuoyDataset(Dataset):
 
         labels_extended = torch.zeros(queries.size(dim=0), 5, dtype=torch.float32)
         if labels.numel() > 0:
-            labels_extended[labels[:, 0].int(), :] = labels[:, :]
+            labels_extended[labels[:, 0].long(), :] = labels[:, :]
 
         labels_mask = torch.full((labels_extended.size(dim=0),), fill_value=False)
         if labels.numel() > 0:
-            labels_mask[labels[:, 0].int()] = True
+            labels_mask[labels[:, 0].long()] = True
 
         queries_mask = torch.full((queries.size(dim=0),), fill_value=True)
 

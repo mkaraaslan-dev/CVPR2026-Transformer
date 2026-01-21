@@ -153,11 +153,11 @@ def evaluate(model, criterion, data_loader, device, epoch, logger=None):
 ###########
 
 # general
-transfer_learning = True    # Loads prev provided weights
+transfer_learning = False    # Loads prev provided weights
 load_optim_state = False    # Loads state of optimizer / training if set to True
 start_epoch = 0             # set this if continuing prev training
 path_to_weights = r"detr-r50-e632da11.pth" 
-output_dir = "test"
+output_dir = "train"
 
 # Backbone
 lr_backbone = 1e-5
@@ -179,7 +179,7 @@ distributed = False
 
 # Dataset
 # path_to_dataset = "/home/marten/Uni/Semester_4/src/Trainingdata/Generated_Sets/Transformer_Dataset1/dataset.yaml"
-path_to_dataset = "/home/marten/Uni/Semester_4/src/Trainingdata/Generated_Sets/Transformer_Dataset2/dataset.yaml"
+path_to_dataset = "D:/1. My folder/LESSON/LOOKOUT/CVPR2026-Transformer/dataset.yaml"
 if distributed:
     path_to_dataset = "/data/mkreis/dataset2/dataset.yaml"
 
@@ -195,10 +195,10 @@ batch_size=4
 if distributed:
     batch_size = 8*torch.cuda.device_count()
 weight_decay=1e-3
-epochs=120
+epochs=5
 lr_drop=65
 clip_max_norm=0.0
-num_workers = 4
+num_workers = 0
 if distributed:
     num_workers = 60
 
